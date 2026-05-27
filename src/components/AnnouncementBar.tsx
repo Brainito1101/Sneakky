@@ -63,23 +63,23 @@ export function AnnouncementBar() {
               className="hidden sm:inline-block h-1.5 w-1.5 rounded-full bg-brand-600 shadow-[0_0_8px_rgba(110,197,227,0.7)] flex-none"
             />
             {/* Mobile short copy */}
-            <span className="md:hidden text-[12.5px] font-semibold tracking-[-0.005em] text-brand-900">
+            <span className="md:hidden text-[12.5px] font-semibold tracking-[-0.005em] text-black">
               Join Klean Club from $24/mo
-              <span aria-hidden className="ml-1.5 text-brand-700 group-hover:translate-x-0.5 inline-block transition-transform">
+              <span aria-hidden className="ml-1.5 text-black group-hover:translate-x-0.5 inline-block transition-transform">
                 →
               </span>
             </span>
             {/* Desktop full copy */}
             <span className="hidden md:inline-flex items-center gap-2 text-[13px] tracking-[-0.005em]">
-              <span className="font-semibold text-brand-900">
+              <span className="font-semibold text-black">
                 Join Sneakky Klean Club for $24/mo
               </span>
-              <span className="text-ink-700">
+              <span className="text-ink-800">
                 and get member pricing on every clean
               </span>
               <span
                 aria-hidden
-                className="ml-1 inline-flex items-center justify-center text-brand-700 group-hover:translate-x-0.5 transition-transform"
+                className="ml-1 inline-flex items-center justify-center text-black group-hover:translate-x-0.5 transition-transform"
               >
                 →
               </span>
