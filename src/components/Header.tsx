@@ -273,11 +273,11 @@ function LinkList({
             href={item.href}
             className="flex items-baseline justify-between gap-6 py-3 border-b border-ink-200 hover:border-brand-500 transition-colors"
           >
-            <span className="text-[14.5px] font-semibold tracking-[-0.005em] text-ink-950 group-hover:text-brand-700 transition-colors">
+            <span className="text-[14.5px] font-normal tracking-[-0.005em] text-ink-950 group-hover:text-brand-700 transition-colors">
               {item.label}
             </span>
             {item.sub && (
-              <span className="text-[12px] font-medium text-ink-700 shrink-0">{item.sub}</span>
+              <span className="text-[12px] font-normal text-ink-700 shrink-0">{item.sub}</span>
             )}
           </Link>
         </li>
@@ -313,7 +313,7 @@ function ServicesPanel() {
                   <li key={service.slug}>
                     <Link
                       href={`/services/${service.slug}`}
-                      className="block py-2.5 text-[14px] font-semibold tracking-[-0.005em] text-ink-950 hover:text-brand-700 transition-colors border-b border-ink-200 hover:border-brand-500"
+                      className="block py-2.5 text-[14px] font-normal tracking-[-0.005em] text-ink-950 hover:text-brand-700 transition-colors border-b border-ink-200 hover:border-brand-500"
                     >
                       {service.name}
                     </Link>
@@ -562,7 +562,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
                     <Link
                       href={link.href}
                       onClick={onClose}
-                      className="flex items-center justify-between py-3.5 text-[16px] font-semibold tracking-[-0.01em] text-ink-950 active:text-brand-700 border-b border-ink-200"
+                      className="flex items-center justify-between py-3.5 text-[16px] font-normal tracking-[-0.01em] text-ink-950 active:text-brand-700 border-b border-ink-200"
                     >
                       {link.label}
                       <span aria-hidden className="text-brand-700 text-[15px]">→</span>

@@ -8,7 +8,10 @@ type SectionProps = {
 
 export function Section({ children, className = "", id }: SectionProps) {
   return (
-    <section id={id} className={`py-20 md:py-28 lg:py-32 ${className}`}>
+    <section
+      id={id}
+      className={`py-14 sm:py-20 md:py-24 lg:py-28 ${className}`}
+    >
       {children}
     </section>
   );
@@ -31,12 +34,16 @@ export function SectionHeading({
       <h2
         className={`${
           eyebrow ? "mt-4" : ""
-        } text-[40px] md:text-[56px] lg:text-[64px] font-semibold tracking-[-0.035em] leading-[1.02] text-balance text-ink-900`}
+        } text-[34px] sm:text-[44px] md:text-[56px] lg:text-[64px] font-semibold tracking-[-0.035em] leading-[1.04] text-balance text-ink-900`}
       >
         {title}
       </h2>
       {description && (
-        <p className="mt-5 text-[17px] md:text-[19px] text-ink-500 leading-relaxed max-w-2xl text-pretty">
+        <p
+          className={`mt-5 text-[17px] md:text-[19px] text-ink-500 leading-relaxed max-w-2xl text-pretty ${
+            align === "center" ? "mx-auto" : ""
+          }`}
+        >
           {description}
         </p>
       )}

@@ -22,7 +22,7 @@ export default function ServicesPage() {
         if (!items.length) return null;
         const meta = serviceCategories[category];
         return (
-          <Section key={category} className={category === "cleaning" ? "pt-0" : "bg-white"}>
+          <Section key={category} id={category} className={category === "cleaning" ? "pt-0 scroll-mt-32" : "bg-white scroll-mt-32"}>
             <Container>
               <div className="grid lg:grid-cols-[1fr_2.4fr] gap-12 lg:gap-16">
                 <div>
