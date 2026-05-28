@@ -83,7 +83,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             <Link
               href="/account"
-              className="hidden md:inline-flex h-10 items-center px-4 text-[14px] font-medium text-ink-900 hover:text-brand-700 transition-colors"
+              className="hidden md:inline-flex h-10 items-center px-5 text-[14px] font-medium text-ink-900 border border-black rounded-full transition-all duration-150 hover:text-brand-700 hover:scale-[1.03] hover:shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-200"
               onMouseEnter={scheduleClose}
             >
               Sign in
@@ -91,15 +91,21 @@ export function Header() {
             <Link
               href="/book"
               onMouseEnter={scheduleClose}
-              className="hidden md:inline-flex h-10 items-center px-5 rounded-full bg-ink-900 text-white text-[13.5px] font-medium tracking-[-0.005em] hover:bg-ink-950 transition-colors"
+              className="hidden md:inline-flex h-10 items-center px-5 rounded-full bg-ink-900 text-white text-[13.5px] font-medium tracking-[-0.005em] transition-all duration-150 hover:bg-ink-950 hover:scale-[1.02] hover:shadow-[0_8px_28px_-10px_rgba(0,0,0,0.45)] focus:outline-none focus:ring-2 focus:ring-brand-200"
             >
               Book a service
             </Link>
             <button
               type="button"
               onClick={() => setMobileOpen((v) => !v)}
+              onPointerDown={(e) => {
+                // pointer events improve responsiveness on touch devices
+                e.preventDefault();
+                setMobileOpen((v) => !v);
+              }}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
-              className="lg:hidden inline-flex h-11 w-11 -mr-2 items-center justify-center text-ink-900"
+              className="lg:hidden inline-flex h-11 w-11 -mr-2 items-center justify-center text-ink-900 relative z-[70]"
+              style={{ touchAction: "manipulation" }}
             >
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path
@@ -534,18 +540,18 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
       </div>
 
       <div className="px-5 sm:px-6 py-8 max-w-[640px] mx-auto">
-        <div className="flex items-center gap-3 mb-10">
+          <div className="flex items-center gap-3 mb-10">
           <Link
             href="/book"
             onClick={onClose}
-            className="flex-1 inline-flex items-center justify-center h-12 rounded-full bg-ink-900 text-white text-[14px] font-medium"
+            className="flex-1 inline-flex items-center justify-center h-12 rounded-full bg-ink-900 text-white text-[14px] font-medium transition-all duration-150 hover:scale-[1.02] hover:shadow-[0_10px_30px_-12px_rgba(0,0,0,0.45)]"
           >
             Book a service
           </Link>
           <Link
             href="/account"
             onClick={onClose}
-            className="inline-flex items-center justify-center h-12 px-5 rounded-full ring-1 ring-black/[0.08] text-ink-900 text-[14px] font-medium"
+            className="inline-flex items-center justify-center h-12 px-5 rounded-full ring-1 ring-black/[0.08] text-ink-900 text-[14px] font-medium transition-all duration-150 hover:scale-[1.02] hover:shadow-sm"
           >
             Sign in
           </Link>

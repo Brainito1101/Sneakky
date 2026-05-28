@@ -67,6 +67,8 @@ export default function MiamiPage() {
   );
 }
 
+
+
 /* ─── Hero CTA — segmented pill with two field labels + circular brand-blue arrow.
        variant="dark"  (default) — dark pill, white type, for light backgrounds
        variant="light"          — white pill, dark type, for dark backgrounds       ─── */
@@ -186,11 +188,11 @@ function Hero() {
 
             {/* The sneaker — animated GIF on transparent background */}
             <Image
-              src="/hero-sneaker.gif"
-              alt="Dirty sneaker being professionally cleaned"
+              src="/miami.gif"
+              alt="Miami sneaker cleaning service showcase"
               fill
               priority
-              sizes="(max-width: 1024px) 0vw, 48vw"
+              sizes="(max-width: 1088px) 0vw, 48vw"
               className="object-contain drop-shadow-[0_36px_36px_rgba(14,58,77,0.28)]"
               unoptimized
             />
@@ -205,25 +207,80 @@ function Hero() {
         </div>
       </Container>
 
-      {/* ─── Premium brand strip ─── */}
+      {/* ─── Premium brand strip with images ─── */}
       <div className="relative border-t border-ink-200/70 bg-white/60 backdrop-blur-sm">
         <Container className="py-8 md:py-10">
-          <div className="text-[10.5px] font-semibold uppercase tracking-[0.22em] text-brand-700 text-center md:text-left">
-            Trusted with the world's most coveted brands
+          <div className="text-center md:text-left">
+            <div className="eyebrow mx-auto md:mx-0">Trusted with the world's most coveted brands</div>
           </div>
-          <div className="mt-5 md:mt-6 -mx-2 overflow-hidden">
-            <ul className="flex items-center flex-wrap justify-center md:justify-between gap-x-7 md:gap-x-10 gap-y-3 px-2">
-              {BRANDS.map((b) => (
-                <li
-                  key={b.name}
-                  className={`text-ink-500 hover:text-ink-950 transition-colors text-[14px] sm:text-[15px] md:text-[16px] whitespace-nowrap ${b.cls}`}
-                >
-                  {b.name}
-                </li>
+          <div className="mt-5 md:mt-6 overflow-hidden marquee-wrap">
+            <div className="flex scroller animate-scroll">
+              {[
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966518/image_50_b1wb7y.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_56_zlb4a0.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966518/image_52_zd0l46.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_51_ssngqh.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_53_vuoe4c.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_54_r3mnap.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_55_wn6kej.png",
+              ].map((imgUrl, idx) => (
+                <div key={idx} className="brand-item flex-none w-28 h-28 md:w-32 md:h-32 relative">
+                  <Image
+                    src={imgUrl}
+                    alt={`Brand shoe ${idx + 1}`}
+                    fill
+                    className="object-contain brand-img"
+                  />
+                </div>
               ))}
-            </ul>
+              {[
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966518/image_50_b1wb7y.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_56_zlb4a0.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966518/image_52_zd0l46.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_51_ssngqh.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_53_vuoe4c.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_54_r3mnap.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_55_wn6kej.png",
+              ].map((imgUrl, idx) => (
+                <div key={`repeat-${idx}`} className="brand-item flex-none w-28 h-28 md:w-32 md:h-32 relative">
+                  <Image
+                    src={imgUrl}
+                    alt={`Brand shoe ${idx + 1}`}
+                    fill
+                    className="object-contain brand-img"
+                  />
+                </div>
+              ))}
+            </div>
+            {/* soft fade edges to create a white blur at entrance/exit */}
+            <div aria-hidden className="fade-edge fade-left" />
+            <div aria-hidden className="fade-edge fade-right" />
           </div>
         </Container>
+        <style>{`
+          @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+
+          .scroller { display:flex; gap: calc(2rem + 15px); align-items:center; }
+          @media (min-width: 768px) { .scroller { gap: calc(3rem + 15px); } }
+
+          .animate-scroll {
+            animation: scroll 14s linear infinite; /* faster */
+            will-change: transform;
+          }
+
+          /* Brand item shadow and image tweaks */
+          .brand-item { display:block; position:relative; }
+          .brand-img { filter: drop-shadow(0 12px 28px rgba(14,58,77,0.14)); }
+
+          /* Fade edges to soften entrance/exit */
+          .marquee-wrap { position:relative; }
+          .fade-edge { position:absolute; top:0; bottom:0; width:8%; pointer-events:none; z-index:10; }
+          .fade-left { left:0; background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 60%); }
+          .fade-right { right:0; background: linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 60%); }
+        `}</style>
       </div>
     </section>
   );
@@ -556,8 +613,8 @@ function HowItWorks() {
       <Container>
         {/* Centered header */}
         <div className="max-w-3xl mx-auto text-center">
-          <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-700">
-            How it works
+          <div>
+            <div className="eyebrow mx-auto">How it works</div>
           </div>
           <h2 className="mt-3 text-[32px] sm:text-[44px] md:text-[56px] lg:text-[60px] font-semibold tracking-[-0.03em] leading-[1.04] text-balance text-ink-950">
             Expert care from start to finish.
@@ -802,19 +859,19 @@ function ServicesOffered() {
       title: "Cleaning",
       copy: "Studio-grade cleans for sneakers, suede, leather, white pairs, and more.",
       href: "/services#cleaning",
-      img: IMG.cleaning,
+      img: "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966518/image_50_b1wb7y.png",
     },
     {
       title: "Restoration",
-      copy: "Repair, reglue, repaint, deyellow, and rebuild. For pairs that deserve more.",
+      copy: "Repair, reglue, repaint, de-yellow, and rebuild. For pairs that deserve more.",
       href: "/services#restoration",
-      img: IMG.restoration,
+      img: "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_51_ssngqh.png",
     },
     {
       title: "Treatments",
-      copy: "Oxidation reversal, sole whitening, waterproofing, and deodorising care.",
+      copy: "Oxidation reversal, sole whitening, waterproofing, and deodorizing care.",
       href: "/services#treatment",
-      img: IMG.treatments,
+      img: "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_53_vuoe4c.png",
     },
   ];
 
@@ -827,7 +884,7 @@ function ServicesOffered() {
           description="From regular maintenance to full restoration, every service is hand-finished by our Miami specialists."
           align="center"
         />
-        <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6">
+        <div className="mt-12 md:mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
           {tiles.map((t, i) => (
             <ServiceTile key={t.title} {...t} delay={i * 800} />
           ))}
@@ -874,96 +931,92 @@ function ServiceTile({
   // staggering the three tiles so they don't sweep in perfect lockstep.
   const animationDelay = `${-delay}ms`;
 
+  // Use a single blue accent for all service tiles (matches middle card)
+  const accent = "from-brand-50 to-brand-100";
+  const checkStroke = "#3da6c8"; // brand blue
+
   return (
     <Link
       href={href}
       className="group relative overflow-hidden rounded-3xl ring-1 ring-black/[0.05] hover:ring-brand-500 transition-all flex flex-col bg-white"
     >
-      {/* Animated before/after canvas */}
-      <div className="relative aspect-[5/4] overflow-hidden bg-ink-100">
-        {/* BEFORE (dirty) — base layer with desaturated + warm-tinted filter */}
-        <Image
-          src={img}
-          alt={`${title} before treatment`}
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover"
-          style={{
-            filter:
-              "saturate(0.5) brightness(0.86) sepia(0.32) contrast(1.04)",
-          }}
-        />
-
-        {/* AFTER (clean) — overlay, clip-path animates to reveal */}
-        <div
-          aria-hidden
-          className="absolute inset-0 sk-reveal-clean"
-          style={{ animationDelay }}
-        >
+      {/* Top image panel with colored background; slightly shorter */}
+      <div className={`relative aspect-[5/3] flex items-center justify-center rounded-t-3xl bg-gradient-to-br ${accent}`}>
+        <div className="relative w-full h-full">
+          {/* reduce shoe image size by 10px as requested */}
           <Image
             src={img}
-            alt={`${title} after treatment`}
+            alt={title}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-cover"
+            className="object-contain p-6 drop-shadow-[0_18px_36px_rgba(14,58,77,0.16)]"
           />
         </div>
 
-        {/* Scrubber: vertical line + arrow circle that moves L→R across the image */}
-        <div
-          aria-hidden
-          className="absolute inset-y-0 sk-sweep-arrow pointer-events-none"
-          style={{ animationDelay, width: 0 }}
-        >
-          <div className="absolute inset-y-0 left-0 -translate-x-1/2 w-px bg-white/85 shadow-[0_0_8px_rgba(255,255,255,0.6)]" />
-          <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 h-11 w-11 rounded-full bg-white ring-1 ring-black/[0.06] shadow-[0_8px_18px_-6px_rgba(0,0,0,0.35)] flex items-center justify-center text-ink-950">
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
+        {/* Circular icon moved to left side, overlapping the image split */}
+        <div className="absolute left-6 md:left-7 -bottom-7 z-20">
+          <div
+            className="h-14 w-14 rounded-full bg-white flex items-center justify-center shadow-[0_6px_14px_-5px_rgba(0,0,0,0.14)]"
+            style={{ border: "0.7px solid rgba(0,0,0,0.08)" }}
+          >
+            {/* Use provided Cloudinary icons per category */}
+            {title.toLowerCase().includes("restor") ? (
+              <Image
+                src="https://res.cloudinary.com/dspez5cnn/image/upload/v1779973331/Group_243_btua0l.png"
+                alt="Restoration icon"
+                width={28}
+                height={28}
+                className="object-contain"
+              />
+            ) : title.toLowerCase().includes("treat") ? (
+              <Image
+                src="https://res.cloudinary.com/dspez5cnn/image/upload/v1779973331/Group_eeizel.png"
+                alt="Treatments icon"
+                width={28}
+                height={28}
+                className="object-contain"
+              />
+            ) : (
+              <Image
+                src="https://res.cloudinary.com/dspez5cnn/image/upload/v1779973331/Group_244_mbbavf.png"
+                alt="Cleaning icon"
+                width={28}
+                height={28}
+                className="object-contain"
+              />
+            )}
           </div>
         </div>
-
-        {/* Corner chips — Before / After */}
-        <span className="absolute top-4 left-4 inline-flex items-center h-7 px-3 rounded-full bg-ink-950/75 backdrop-blur-sm text-white text-[10.5px] font-semibold uppercase tracking-[0.16em]">
-          Before
-        </span>
-        <span className="absolute top-4 right-4 inline-flex items-center h-7 px-3 rounded-full bg-brand-500 text-ink-950 text-[10.5px] font-semibold uppercase tracking-[0.16em]">
-          After
-        </span>
-
-        {/* Title overlay */}
-        <div
-          aria-hidden
-          className="absolute inset-x-0 bottom-0 h-1/2 pointer-events-none"
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.55) 100%)",
-          }}
-        />
-        <h3 className="absolute bottom-5 left-5 right-5 text-white text-[24px] md:text-[28px] font-semibold tracking-[-0.02em] leading-[1.1]">
-          {title}
-        </h3>
       </div>
 
-      {/* Description row */}
-      <div className="p-6 md:p-7 flex items-center justify-between gap-4">
-        <p className="text-[14px] text-ink-600 leading-[1.5]">{copy}</p>
-        <span
-          aria-hidden
-          className="flex-none inline-flex h-9 w-9 items-center justify-center rounded-full bg-ink-100 group-hover:bg-brand-500 group-hover:text-white text-ink-700 transition-colors"
-        >
-          →
-        </span>
+      {/* Content */}
+      <div className="p-6 md:p-7 flex flex-col gap-4">
+        <h3 className="text-[22px] font-semibold tracking-[-0.015em] text-ink-950">{title}</h3>
+        <p className="text-[15px] text-ink-600 leading-[1.6]">{copy}</p>
+
+        {/* Feature bullets matching screenshot spacing, using brand blue checks */}
+        <ul className="mt-4 space-y-3">
+          <li className="flex items-start gap-3 text-[14px] text-ink-700">
+            <span className="mt-0.5 h-5 w-5 rounded-full flex items-center justify-center bg-brand-50 text-brand-600" aria-hidden>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#3da6c8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </span>
+            Safe for all materials
+          </li>
+          <li className="flex items-start gap-3 text-[14px] text-ink-700">
+            <span className="mt-0.5 h-5 w-5 rounded-full flex items-center justify-center bg-brand-50 text-brand-600" aria-hidden>
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="#3da6c8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </span>
+            Stain & odor removal
+          </li>
+        </ul>
+
+        <div className="mt-4 flex items-center justify-end">
+          <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-ink-50 ring-1 ring-black/[0.04] text-ink-900 transition-colors transition-transform group-hover:scale-105 group-hover:bg-brand-500">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+        </div>
       </div>
     </Link>
   );
@@ -982,48 +1035,56 @@ function Pricing() {
         />
 
         <div className="mt-12 md:mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {/* Tier 1 — Everyday */}
+          {/* Tier 1 — Essential Clean */}
           <PricingCard
-            name="Everyday Clean"
+            name="Essential Clean"
             price="$34"
             priceLabel="Starting at"
-            blurb="Best for regular sneaker maintenance and light cleaning."
+            blurb="Quick refresh for everyday sneakers-uppers, midsoles, and light detailing."
             cta="Book this service"
             ctaHref="/book"
+            variant="essential"
+            features={["Upper cleaning", "Midsole cleaning"]}
           />
 
-          {/* Tier 2 — Deep */}
+          {/* Tier 2 — Signature (most popular) */}
           <PricingCard
-            name="Deep Clean"
+            name="Signature Clean"
             price="$54"
             priceLabel="Starting at"
-            blurb="Best for sneakers with visible dirt, odor, outsole buildup, and full-detail cleaning needs."
+            blurb="Complete sneaker clean and restoration-deep upper, midsole, and detailing."
             cta="Book this service"
             ctaHref="/book"
+            featured
+            variant="signature"
+            features={["Deep upper cleaning", "Midsole cleaning", "Undersole cleaning", "Lace wash", "Detail Finish"]}
           />
 
-          {/* Tier 3 — Premium (featured) */}
+          {/* Tier 3 — Premium Care */}
           <PricingCard
             name="Premium Care"
             price="$84"
             priceLabel="Starting at"
-            blurb="Best for designer, suede, nubuck, luxury, and specialty sneakers."
+            blurb="Advanced care for high-value, delicate, and specialty sneakers. Materials, repairs, and protection."
             cta="Book this service"
             ctaHref="/book"
-            featured
+            variant="premium"
+            features={["Premium material treatment", "Advanced stain removal", "Suede / specialty fabric care", "Full detail cleaning"]}
           />
 
           {/* Tier 4 — Klean Club (subscription) */}
           <PricingCard
-            name="Klean Club"
-            price="$24"
-            priceLabel="From"
-            priceSuffix="/mo"
-            badge="Membership"
-            blurb="Member savings, priority service, and easy repeat bookings for sneaker rotations."
-            cta="Join Klean Club"
-            ctaHref="/klean-club/join"
+            name="Restoration Service"
+            price="$110+"
+            priceLabel=""
+            priceSuffix={undefined}
+            badge="Restoration"
+            blurb="For heavily worn or damaged sneakers that need more than a clean."
+            cta="Contact us"
+            ctaHref="/contact"
             tone="brand"
+            variant="klean"
+            features={["Oxidation treatment", "Deep stain correction or paint touch up", "Specialized restoration work"]}
           />
         </div>
       </Container>
@@ -1041,7 +1102,9 @@ function PricingCard({
   ctaHref,
   featured = false,
   tone = "default",
+  variant = "essential",
   badge,
+  features,
 }: {
   name: string;
   price: string;
@@ -1052,10 +1115,13 @@ function PricingCard({
   ctaHref: string;
   featured?: boolean;
   tone?: "default" | "brand";
+  variant?: "essential" | "signature" | "premium" | "klean";
   badge?: string;
+  features?: string[];
 }) {
   const isFeatured = featured;
   const isBrand = tone === "brand";
+  const shoeVariant = variant || "essential";
 
   const cardCls = isFeatured
     ? "bg-ink-950 text-white ring-1 ring-brand-500"
@@ -1069,14 +1135,14 @@ function PricingCard({
   const nameTone = isFeatured || isBrand ? "text-white" : "text-ink-950";
 
   return (
-    <div className={`relative rounded-3xl p-7 md:p-8 flex flex-col ${cardCls}`}>
+    <div className={`relative rounded-3xl p-7 md:p-8 flex flex-col h-full ${cardCls}`}>
       {isFeatured && (
-        <div className="absolute -top-3 right-6 inline-flex items-center h-6 px-3 rounded-full bg-brand-500 text-ink-950 text-[10.5px] font-bold uppercase tracking-[0.14em]">
+        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 inline-flex items-center h-6 px-3 rounded-full bg-brand-500 text-ink-950 text-[10.5px] font-bold tracking-[0.06em] z-10">
           Most popular
         </div>
       )}
       {badge && !isFeatured && (
-        <div className="absolute -top-3 right-6 inline-flex items-center h-6 px-3 rounded-full bg-white text-ink-950 text-[10.5px] font-bold uppercase tracking-[0.14em] shadow-[0_4px_12px_-2px_rgba(0,0,0,0.18)]">
+        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 inline-flex items-center h-6 px-3 rounded-full bg-white text-ink-950 text-[10.5px] font-bold tracking-[0.06em] shadow-[0_4px_12px_-2px_rgba(0,0,0,0.18)] z-10">
           {badge}
         </div>
       )}
@@ -1095,14 +1161,31 @@ function PricingCard({
           </span>
         )}
       </div>
-      <p className={`mt-5 text-[14px] leading-[1.55] flex-1 ${blurbTone}`}>
-        {blurb}
-      </p>
+      <div className="flex-1 pb-2.5">
+        <p className={`mt-5 text-[14px] leading-[1.55] ${blurbTone}`}>{blurb}</p>
+        {features && features.length > 0 && (
+          <ul className="mt-6 space-y-3">
+            {features.map((f) => (
+              <li key={f} className="flex items-start gap-3 text-[14px]">
+                <span
+                  className={`flex-none mt-0.5 h-5 w-5 rounded-full flex items-center justify-center ${isFeatured || isBrand ? "bg-white" : "bg-ink-900"}`}
+                  aria-hidden
+                >
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" aria-hidden>
+                    <path d="M20 6L9 17l-5-5" stroke={isFeatured || isBrand ? "#0ea5c9" : "#fff"} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+                <span className={`${isFeatured || isBrand ? "text-white/90" : "text-ink-700"}`}>{f}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
       <Button
         href={ctaHref}
         variant={isFeatured || isBrand ? "white" : "primary"}
         size="md"
-        className="mt-8 w-full"
+        className="mt-auto w-full"
       >
         {cta}
       </Button>
@@ -1145,7 +1228,7 @@ function KleanClubCallout() {
 
           <div className="relative p-8 sm:p-12 md:p-16 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-10 lg:gap-16 items-end">
             <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-300">
+              <div className="text-[11px] font-semibold tracking-[0.06em] text-brand-300">
                 Klean Club
               </div>
               <h2 className="mt-3 text-[36px] sm:text-[48px] md:text-[60px] font-semibold tracking-[-0.03em] leading-[1.02] text-balance">
@@ -1421,7 +1504,7 @@ function FAQs() {
         {/* Help-page CTA */}
         <div className="mt-10 md:mt-12 rounded-3xl bg-ink-50 ring-1 ring-black/[0.05] p-6 md:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-5">
           <div>
-            <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-700">
+            <div className="text-[11px] font-semibold tracking-[0.06em] text-brand-700">
               Need more help?
             </div>
             <div className="mt-2 text-[18px] md:text-[20px] font-semibold tracking-[-0.015em] text-ink-950">
@@ -1480,7 +1563,7 @@ function FinalCta() {
           <div className="relative grid grid-cols-1 lg:grid-cols-[1.35fr_1fr] gap-10 lg:gap-16 p-6 sm:p-10 md:p-14 lg:p-20">
             {/* Left: editorial statement + CTA */}
             <div>
-              <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-brand-300">
+              <div className="text-[11px] font-semibold tracking-[0.06em] text-brand-300">
                 Sneakky Klean Miami
               </div>
               <h2 className="mt-5 text-[36px] sm:text-[52px] md:text-[64px] lg:text-[78px] font-semibold tracking-[-0.04em] leading-[1.0] text-balance">
@@ -1562,7 +1645,7 @@ function InfoBlock({
 }) {
   return (
     <div>
-      <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-300">
+      <div className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.06em] text-brand-300">
         <span className="text-brand-300">{icon}</span>
         {label}
       </div>

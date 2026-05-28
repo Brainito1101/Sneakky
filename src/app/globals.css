@@ -91,11 +91,18 @@
   }
 
   .eyebrow {
-    font-size: var(--text-eyebrow);
-    letter-spacing: var(--text-eyebrow--letter-spacing);
-    font-weight: 600;
-    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 1.25rem;
+    border-radius: 9999px;
+    border: 2px solid var(--color-brand-400);
     color: var(--color-brand-600);
+    background: transparent;
+    font-size: calc(var(--text-eyebrow) + 0.0625rem);
+    letter-spacing: 0.04em;
+    font-weight: 600;
+    text-transform: none;
   }
 
   /* Subtle hairline used Apple-style */
