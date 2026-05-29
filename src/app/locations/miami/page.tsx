@@ -6,7 +6,7 @@ import { Section, SectionHeading } from "@/components/Section";
 import { Button } from "@/components/Button";
 import { BookCta } from "@/components/BookCta";
 import { getLocation } from "@/data/locations";
-import okGif from "@/Videos/ok.gif";
+import miamiHeroGif from "@/Videos/miami-hero-section.gif";
 
 export const metadata: Metadata = {
   title: "Premium Sneaker Cleaning in Miami",
@@ -113,36 +113,33 @@ function Hero() {
             </div>
           </div>
 
-          {/* Right column — featured sneaker on transparent background */}
-          <div className="relative w-full aspect-[4/3] lg:aspect-square hidden lg:block lg:-mr-6 xl:-mr-10">
-            {/* Soft brand-blue glow behind the sneaker */}
-            <div
-              aria-hidden
-              className="absolute inset-x-[6%] top-[10%] bottom-[8%] rounded-full"
-              style={{
-                background:
-                  "radial-gradient(50% 50% at 50% 55%, rgba(110,197,227,0.48) 0%, rgba(110,197,227,0.16) 50%, transparent 75%)",
-                filter: "blur(36px)",
-              }}
-            />
+          {/* Right column — featured sneaker GIF in a box */}
+          <div className="relative w-full hidden lg:flex items-center justify-center lg:-mr-6 xl:-mr-10 p-4 lg:p-8">
+            <div className="relative w-full max-w-[450px]">
+              
+              {/* Before Label (Outside Box) */}
+              <div className="absolute -top-6 -left-8 z-10 px-5 py-3 rounded-2xl bg-white shadow-[0_12px_40px_rgba(0,0,0,0.12)] border border-ink-100 flex items-center gap-3 transition-all duration-300 hover:scale-105">
+                <div className="w-2.5 h-2.5 rounded-full bg-rose-500 shadow-[0_0_12px_rgba(244,63,94,0.8)] animate-pulse"></div>
+                <span className="text-[14px] font-black uppercase tracking-[0.15em] text-ink-950">Before</span>
+              </div>
 
-            {/* The sneaker — animated GIF on transparent background */}
-            <Image
-              src={okGif}
-              alt="Miami sneaker cleaning service showcase"
-              fill
-              priority
-              sizes="(max-width: 1088px) 0vw, 48vw"
-              className="object-contain drop-shadow-[0_36px_36px_rgba(14,58,77,0.28)]"
-              unoptimized
-            />
-
-            {/* Soft ground-shadow ellipse under the sneaker */}
-            <div
-              aria-hidden
-              className="absolute left-[16%] right-[16%] bottom-[6%] h-6 rounded-[50%] bg-ink-950/22"
-              style={{ filter: "blur(18px)" }}
-            />
+              {/* The Video Box */}
+              <div className="relative w-full rounded-[2.5rem] border-4 border-brand-500 overflow-hidden shadow-[0_20px_60px_-15px_rgba(110,197,227,0.4)] bg-ink-50 group">
+                <Image
+                  src={miamiHeroGif}
+                  alt="Miami sneaker cleaning service showcase"
+                  className="w-full h-auto object-contain transition-transform duration-700 group-hover:scale-[1.02]"
+                  priority
+                  unoptimized
+                />
+              </div>
+              
+              {/* After Label (Outside Box) */}
+              <div className="absolute -bottom-6 -right-8 z-10 px-5 py-3 rounded-2xl bg-brand-500 shadow-[0_12px_40px_rgba(14,58,77,0.25)] border border-brand-400 flex items-center gap-3 transition-all duration-300 hover:scale-105">
+                <div className="w-2.5 h-2.5 rounded-full bg-white shadow-[0_0_12px_rgba(255,255,255,0.9)] animate-pulse"></div>
+                <span className="text-[14px] font-black uppercase tracking-[0.15em] text-white">After</span>
+              </div>
+            </div>
           </div>
         </div>
       </Container>
@@ -793,19 +790,19 @@ function ServicesOffered() {
       title: "Cleaning",
       copy: "Studio-grade cleans for sneakers, suede, leather, white pairs, and more.",
       href: "/services#cleaning",
-      img: "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966518/image_50_b1wb7y.png",
+      img: "https://res.cloudinary.com/dspez5cnn/image/upload/v1780071586/Frame_1000003845_ayc9fw.png",
     },
     {
       title: "Restoration",
       copy: "Repair, reglue, repaint, de-yellow, and rebuild. For pairs that deserve more.",
       href: "/services#restoration",
-      img: "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_51_ssngqh.png",
+      img: "https://res.cloudinary.com/dspez5cnn/image/upload/v1780071586/Frame_1000003846_ao2j2v.png",
     },
     {
       title: "Treatments",
       copy: "Oxidation reversal, sole whitening, waterproofing, and deodorizing care.",
       href: "/services#treatment",
-      img: "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_53_vuoe4c.png",
+      img: "https://res.cloudinary.com/dspez5cnn/image/upload/v1780071586/Frame_1000003847_m5gqi4.png",
     },
   ];
 
@@ -876,21 +873,24 @@ function ServiceTile({
     >
       {/* Top image panel with colored background; slightly shorter */}
       <div className={`relative aspect-[5/3] flex items-center justify-center rounded-t-3xl bg-gradient-to-br ${accent}`}>
-        <div className="relative w-full h-full">
-          {/* reduce shoe image size by 10px as requested */}
+          <div className="relative w-full h-full">
+          {/* make the image fill the panel edge-to-edge (no inner padding) */}
           <Image
             src={img}
             alt={title}
             fill
             sizes="(max-width: 768px) 100vw, 33vw"
-            className="object-contain p-6 drop-shadow-[0_18px_36px_rgba(14,58,77,0.16)]"
+            className="object-cover w-full h-full"
           />
         </div>
+      </div>
 
-        {/* Circular icon moved to left side, overlapping the image split */}
-        <div className="absolute left-6 md:left-7 -bottom-7 z-20">
+      {/* Content */}
+      <div className="p-4 md:p-5 flex flex-col gap-3">
+        {/* Badge + Title on same line */}
+        <div className="flex items-center gap-3">
           <div
-            className="h-14 w-14 rounded-full bg-white flex items-center justify-center shadow-[0_6px_14px_-5px_rgba(0,0,0,0.14)]"
+            className="h-12 w-12 flex-shrink-0 rounded-full bg-white flex items-center justify-center shadow-sm"
             style={{ border: "0.7px solid rgba(0,0,0,0.08)" }}
           >
             {/* Use provided Cloudinary icons per category */}
@@ -898,34 +898,31 @@ function ServiceTile({
               <Image
                 src="https://res.cloudinary.com/dspez5cnn/image/upload/v1779973331/Group_243_btua0l.png"
                 alt="Restoration icon"
-                width={28}
-                height={28}
+                width={21}
+                height={21}
                 className="object-contain"
               />
             ) : title.toLowerCase().includes("treat") ? (
               <Image
                 src="https://res.cloudinary.com/dspez5cnn/image/upload/v1779973331/Group_eeizel.png"
                 alt="Treatments icon"
-                width={28}
-                height={28}
+                width={21}
+                height={21}
                 className="object-contain"
               />
             ) : (
               <Image
                 src="https://res.cloudinary.com/dspez5cnn/image/upload/v1779973331/Group_244_mbbavf.png"
                 alt="Cleaning icon"
-                width={28}
-                height={28}
+                width={21}
+                height={21}
                 className="object-contain"
               />
             )}
           </div>
+          <h3 className="text-[25px] md:text-[29px] font-semibold tracking-[-0.015em] text-ink-950">{title}</h3>
         </div>
-      </div>
 
-      {/* Content */}
-      <div className="p-6 md:p-7 flex flex-col gap-4">
-        <h3 className="text-[22px] font-semibold tracking-[-0.015em] text-ink-950">{title}</h3>
         <p className="text-[15px] text-ink-600 leading-[1.6]">{copy}</p>
 
         {/* Feature bullets matching screenshot spacing, using brand blue checks */}

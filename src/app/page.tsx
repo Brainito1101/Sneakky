@@ -6,7 +6,6 @@ import { BookCta } from "@/components/BookCta";
 import { Marquee } from "@/components/Marquee";
 import { services } from "@/data/services";
 import { locations } from "@/data/locations";
-
 const featuredServices = [
   "sneaker-cleaning",
   "sneaker-restoration",
