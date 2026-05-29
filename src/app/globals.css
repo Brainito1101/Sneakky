@@ -94,14 +94,11 @@
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.45rem 1.25rem;
-    border-radius: 9999px;
-    border: 2px solid var(--color-brand-400);
     color: var(--color-brand-600);
     background: transparent;
     font-size: calc(var(--text-eyebrow) + 0.0625rem);
     letter-spacing: 0.04em;
-    font-weight: 600;
+    font-weight: 400;
     text-transform: none;
   }
 

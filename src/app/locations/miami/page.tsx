@@ -5,6 +5,7 @@ import { Container } from "@/components/Container";
 import { Section, SectionHeading } from "@/components/Section";
 import { Button } from "@/components/Button";
 import { getLocation } from "@/data/locations";
+import okGif from "@/Videos/ok.gif";
 
 export const metadata: Metadata = {
   title: "Premium Sneaker Cleaning in Miami",
@@ -145,8 +146,6 @@ function Hero() {
         }}
       />
 
-      {/* (Palm illustration removed) */}
-
       {/* ─── Headline + sneaker ─── */}
       <Container className="relative pt-12 sm:pt-20 md:pt-24 lg:pt-28 pb-14 sm:pb-20 md:pb-24">
         <div className="grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-12 items-center">
@@ -188,7 +187,7 @@ function Hero() {
 
             {/* The sneaker — animated GIF on transparent background */}
             <Image
-              src="/miami.gif"
+              src={okGif}
               alt="Miami sneaker cleaning service showcase"
               fill
               priority
@@ -208,47 +207,45 @@ function Hero() {
       </Container>
 
       {/* ─── Premium brand strip with images ─── */}
-      <div className="relative border-t border-ink-200/70 bg-white/60 backdrop-blur-sm">
+      <div className="relative bg-white/60 backdrop-blur-sm">
         <Container className="py-8 md:py-10">
           <div className="text-center md:text-left">
             <div className="eyebrow mx-auto md:mx-0">Trusted with the world's most coveted brands</div>
           </div>
-          <div className="mt-5 md:mt-6 overflow-hidden marquee-wrap">
-            <div className="flex scroller animate-scroll">
+          <div className="mt-10 overflow-hidden marquee-wrap relative">
+            <div className="flex scroller animate-scroll relative z-10">
               {[
-                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966518/image_50_b1wb7y.png",
-                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_56_zlb4a0.png",
-                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966518/image_52_zd0l46.png",
-                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_51_ssngqh.png",
-                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_53_vuoe4c.png",
-                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_54_r3mnap.png",
-                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_55_wn6kej.png",
-              ].map((imgUrl, idx) => (
-                <div key={idx} className="brand-item flex-none w-28 h-28 md:w-32 md:h-32 relative">
-                  <Image
-                    src={imgUrl}
-                    alt={`Brand shoe ${idx + 1}`}
-                    fill
-                    className="object-contain brand-img"
-                  />
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045949/image_70_pvbvpz.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045949/image_71_s46swh.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045949/image_76_qahipd.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045949/image_69_ikn8lh.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045949/image_75_gb4z6t.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045949/image_73_mu5qxa.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045949/image_74_zzcro1.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045948/image_72_cjgkdj.png",
+              ].map((logoUrl, i) => (
+                <div
+                  key={i}
+                  className="flex-none relative h-10 w-28 sm:h-12 sm:w-32 md:h-14 md:w-36 flex items-center justify-center opacity-70 mix-blend-multiply"
+                >
+                  <Image src={logoUrl} alt={`Brand logo ${i}`} fill className="object-contain" />
                 </div>
               ))}
               {[
-                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966518/image_50_b1wb7y.png",
-                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_56_zlb4a0.png",
-                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966518/image_52_zd0l46.png",
-                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_51_ssngqh.png",
-                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_53_vuoe4c.png",
-                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_54_r3mnap.png",
-                "https://res.cloudinary.com/dspez5cnn/image/upload/v1779966517/image_55_wn6kej.png",
-              ].map((imgUrl, idx) => (
-                <div key={`repeat-${idx}`} className="brand-item flex-none w-28 h-28 md:w-32 md:h-32 relative">
-                  <Image
-                    src={imgUrl}
-                    alt={`Brand shoe ${idx + 1}`}
-                    fill
-                    className="object-contain brand-img"
-                  />
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045949/image_70_pvbvpz.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045949/image_71_s46swh.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045949/image_76_qahipd.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045949/image_69_ikn8lh.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045949/image_75_gb4z6t.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045949/image_73_mu5qxa.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045949/image_74_zzcro1.png",
+                "https://res.cloudinary.com/dspez5cnn/image/upload/v1780045948/image_72_cjgkdj.png",
+              ].map((logoUrl, i) => (
+                <div
+                  key={`repeat-${i}`}
+                  className="flex-none relative h-10 w-28 sm:h-12 sm:w-32 md:h-14 md:w-36 flex items-center justify-center opacity-70 mix-blend-multiply"
+                >
+                  <Image src={logoUrl} alt={`Brand logo ${i}`} fill className="object-contain" />
                 </div>
               ))}
             </div>
@@ -263,17 +260,13 @@ function Hero() {
             100% { transform: translateX(-50%); }
           }
 
-          .scroller { display:flex; gap: calc(2rem + 15px); align-items:center; }
-          @media (min-width: 768px) { .scroller { gap: calc(3rem + 15px); } }
+          .scroller { display:flex; gap: 4rem; align-items:center; }
+          @media (min-width: 768px) { .scroller { gap: 6rem; } }
 
           .animate-scroll {
             animation: scroll 14s linear infinite; /* faster */
             will-change: transform;
           }
-
-          /* Brand item shadow and image tweaks */
-          .brand-item { display:block; position:relative; }
-          .brand-img { filter: drop-shadow(0 12px 28px rgba(14,58,77,0.14)); }
 
           /* Fade edges to soften entrance/exit */
           .marquee-wrap { position:relative; }
@@ -1161,7 +1154,7 @@ function PricingCard({
           </span>
         )}
       </div>
-      <div className="flex-1 pb-2.5">
+      <div className="flex-1 pb-4">
         <p className={`mt-5 text-[14px] leading-[1.55] ${blurbTone}`}>{blurb}</p>
         {features && features.length > 0 && (
           <ul className="mt-6 space-y-3">
