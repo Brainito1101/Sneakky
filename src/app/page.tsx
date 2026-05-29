@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Section, SectionHeading } from "@/components/Section";
 import { Button } from "@/components/Button";
+import { BookCta } from "@/components/BookCta";
 import { Marquee } from "@/components/Marquee";
 import { services } from "@/data/services";
 import { locations } from "@/data/locations";
@@ -50,14 +51,14 @@ function Hero() {
           <p className="mt-8 max-w-2xl text-[18px] md:text-[20px] text-ink-500 leading-relaxed text-pretty">
             Sneakky Klean is the premium cleaning and restoration service trusted by collectors. Material-specific care, hand-finished by our team, returned looking — and feeling — better than new.
           </p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-3">
-            <Button href="/book" size="lg">
-              Book a service
-              <span aria-hidden>→</span>
-            </Button>
-            <Button href="/services" variant="white" size="lg">
+          <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4">
+            <BookCta />
+            <Link
+              href="/services"
+              className="inline-flex items-center justify-center h-12 px-6 rounded-full ring-1 ring-ink-200 bg-white text-ink-950 text-[14.5px] font-medium hover:bg-ink-50 transition-colors"
+            >
               Explore services
-            </Button>
+            </Link>
           </div>
 
           <dl className="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-10 max-w-3xl">

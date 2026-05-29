@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/Container";
 import { Section, SectionHeading } from "@/components/Section";
 import { Button } from "@/components/Button";
+import { BookCta } from "@/components/BookCta";
 import { services, getService, serviceCategories } from "@/data/services";
 
 export async function generateStaticParams() {
@@ -60,9 +61,14 @@ export default async function ServicePage({
               <p className="mt-6 max-w-2xl text-[16px] md:text-[17px] text-ink-500 leading-relaxed">
                 {service.description}
               </p>
-              <div className="mt-10 flex flex-col sm:flex-row gap-3">
-                <Button href="/book" size="lg">Book this service</Button>
-                <Button href="/quote" variant="white" size="lg">Get a quote</Button>
+              <div className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4">
+                <BookCta />
+                <Link
+                  href="/quote"
+                  className="inline-flex items-center justify-center h-12 px-6 rounded-full ring-1 ring-ink-200 bg-white text-ink-950 text-[14.5px] font-medium hover:bg-ink-50 transition-colors"
+                >
+                  Get a quote
+                </Link>
               </div>
             </div>
             <aside className="rounded-3xl bg-ink-950 text-white p-8">

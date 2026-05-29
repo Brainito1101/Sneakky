@@ -18,7 +18,7 @@ type NavItem = {
 const navItems: NavItem[] = [
   { key: "services", label: "Services", href: "/services", hasMenu: true },
   { key: "locations", label: "Locations", href: "/locations", hasMenu: true },
-  { key: "klean-club", label: "Klean Club", href: "/klean-club", hasMenu: true },
+  { key: "klean-club", label: "Klean Club", href: "/klean-club", hasMenu: false },
   { key: "shop", label: "Shop", href: "/shop", hasMenu: true },
   { key: "company", label: "Company", hasMenu: true },
 ];
@@ -154,7 +154,6 @@ export function Header() {
           <div className="relative max-w-[1440px] mx-auto px-6 md:px-10 py-10 md:py-12">
             {open === "services" && <ServicesPanel />}
             {open === "locations" && <LocationsPanel />}
-            {open === "klean-club" && <KleanClubPanel />}
             {open === "shop" && <ShopPanel />}
             {open === "company" && <CompanyPanel />}
           </div>
@@ -210,12 +209,15 @@ function NavTrigger({
   const baseCls =
     "group h-[88px] sm:h-[96px] md:h-[112px] lg:h-[128px] inline-flex items-center px-3 xl:px-4";
 
+  // Only open the mega panel for nav items that have one
+  const enter = item.hasMenu ? onEnter : undefined;
+
   return item.href ? (
-    <Link href={item.href} onMouseEnter={onEnter} onFocus={onEnter} className={baseCls}>
+    <Link href={item.href} onMouseEnter={enter} onFocus={enter} className={baseCls}>
       {inner}
     </Link>
   ) : (
-    <button type="button" onMouseEnter={onEnter} onFocus={onEnter} className={baseCls}>
+    <button type="button" onMouseEnter={enter} onFocus={enter} className={baseCls}>
       {inner}
     </button>
   );
@@ -461,10 +463,16 @@ function CompanyPanel() {
 /* ─────────── Mobile ─────────── */
 
 function MobileMenu({ onClose }: { onClose: () => void }) {
+  /**
+   * A section is either:
+   *   - a group with sub-links (existing pattern)
+   *   - a single direct link (when `directLink` is true)
+   */
   const sections: {
     title: string;
     href?: string;
-    links: { href: string; label: string }[];
+    directLink?: boolean;
+    links?: { href: string; label: string }[];
   }[] = [
     {
       title: "Services",
@@ -487,10 +495,7 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
     {
       title: "Klean Club",
       href: "/klean-club",
-      links: [
-        { href: "/klean-club", label: "Membership" },
-        { href: "/klean-club/join", label: "Join" },
-      ],
+      directLink: true,
     },
     {
       title: "Shop",
@@ -557,27 +562,44 @@ function MobileMenu({ onClose }: { onClose: () => void }) {
           </Link>
         </div>
         <div className="space-y-10">
-          {sections.map((section) => (
-            <div key={section.title}>
-              <div className="text-[11px] uppercase tracking-[0.18em] text-brand-800 font-semibold mb-3 pb-2 border-b-2 border-brand-500/40">
-                {section.title}
+          {sections.map((section) => {
+            // Render as a single direct link (no sub-list, no section title)
+            if (section.directLink && section.href) {
+              return (
+                <Link
+                  key={section.title}
+                  href={section.href}
+                  onClick={onClose}
+                  className="flex items-center justify-between py-3 text-[15px] font-semibold uppercase tracking-[0.18em] text-brand-800 active:text-brand-700 border-b-2 border-brand-500/40"
+                >
+                  {section.title}
+                  <span aria-hidden className="text-brand-700 text-[14px]">→</span>
+                </Link>
+              );
+            }
+
+            return (
+              <div key={section.title}>
+                <div className="text-[11px] uppercase tracking-[0.18em] text-brand-800 font-semibold mb-3 pb-2 border-b-2 border-brand-500/40">
+                  {section.title}
+                </div>
+                <ul>
+                  {section.links?.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        onClick={onClose}
+                        className="flex items-center justify-between py-3.5 text-[16px] font-normal tracking-[-0.01em] text-ink-950 active:text-brand-700 border-b border-ink-200"
+                      >
+                        {link.label}
+                        <span aria-hidden className="text-brand-700 text-[15px]">→</span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul>
-                {section.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      onClick={onClose}
-                      className="flex items-center justify-between py-3.5 text-[16px] font-normal tracking-[-0.01em] text-ink-950 active:text-brand-700 border-b border-ink-200"
-                    >
-                      {link.label}
-                      <span aria-hidden className="text-brand-700 text-[15px]">→</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
